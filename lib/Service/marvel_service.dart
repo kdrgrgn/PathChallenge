@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:challenge/Model/Characters/characters_response.dart';
 import 'package:challenge/Model/Characters/data.dart';
@@ -32,10 +31,10 @@ return CharactersResponse.fromJson(res).data!;
   Future getComics(int characterId) async {
     String baseQ = baseQuery();
     DateTime dateTime =DateTime.now();
-    String query= baseQ+"&dateRange=2005-01-01,${dateTime.year}-${dateTime.month}-${dateTime.day}&limit=10";
+    String query= baseQ+"&dateRange=2005-01-01,${dateTime.year}-${dateTime.month}-${dateTime.day}&limit=10&orderBy=-focDate";
     print(baseUrl+"characters/$characterId/comics$query");
     var  response=await  http.get(Uri.parse(baseUrl+"characters/$characterId/comics$query"));
-    log(response.body);
+    print(response.body);
 
     var res=jsonDecode(response.body) as Map<String,dynamic>;
 

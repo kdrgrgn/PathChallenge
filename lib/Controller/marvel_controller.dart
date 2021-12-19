@@ -54,6 +54,8 @@ class MarvelController extends GetxController implements MarvelServiceBase {
       comics.value= await _marvelService.getComics(characterId);
       update();
     }catch(e){
+      comics=<Comics>[].obs;
+      update();
       print("hata yakalandi $e");
       Get.showSnackbar(const GetSnackBar(message: "An error occurred, please try again",duration: Duration(seconds: 4),));
     }
